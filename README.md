@@ -10,3 +10,4 @@
     - [x] [Нахождение самого короткого слова](./simple-tasks/most_short_word.cpp)
     - [x] [Нахождение самого длинного слова](./simple-tasks/most_long_word.cpp)
     - [x] [Вывод блока-кода с данными студента](./simple-tasks/display_student_name.cpp) &mdash; только для англ.
+    - [x] [Сумму чисел нацело делящихся на 5](./simple-tasks/mod4eq0.cpp)
