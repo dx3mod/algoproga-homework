@@ -1,0 +1,4 @@
+rect 50 50 none 30 30
+rect 10 10 yellow 50 50
+circle 23 green 70 70
+point gray 200 200

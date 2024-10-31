@@ -1,24 +1,67 @@
 #include <iostream>
+#include <fstream>
+
 #include <SFML/Graphics.hpp>
 
 int main()
 {
+    // Parse file
+
+    std::ifstream infile("input.txt");
+
     std::vector<sf::Shape *> figures;
 
-    sf::RectangleShape rectangle(sf::Vector2f(60.f, 70.f));
-    rectangle.setFillColor(sf::Color::Black);
-    rectangle.setOutlineColor(sf::Color::Yellow);
-    rectangle.setOutlineThickness(5.f);
-    rectangle.setPosition(100, 100);
+    std::string kind, fill;
+    while (infile >> kind)
+    {
+        sf::Shape *shape;
 
-    figures.push_back(&rectangle);
+        if (kind == "rect")
+        {
+            float width, height;
+            infile >> width >> height;
 
-    sf::CircleShape circle(49.f);
-    circle.setFillColor(sf::Color::Green);
+            shape = new sf::RectangleShape(sf::Vector2f(width, height));
+        }
+        else if (kind == "circle")
+        {
+            float radius;
+            infile >> radius;
 
-    figures.push_back(&circle);
+            shape = new sf::CircleShape(radius);
+        }
+        else if (kind == "point")
+        {
+            shape = new sf::CircleShape(4.f);
+        }
 
-    // Display window
+        infile >> fill;
+
+        if (fill == "green")
+        {
+            shape->setFillColor(sf::Color::Green);
+        }
+        else if (fill == "yellow")
+        {
+            shape->setFillColor(sf::Color::Yellow);
+        }
+        else if (fill == "gray")
+        {
+        }
+        else
+        {
+            shape->setFillColor(sf::Color::Transparent);
+            shape->setOutlineColor(sf::Color::Red);
+            shape->setOutlineThickness(3.f);
+        }
+
+        int x, y;
+        infile >> x >> y;
+
+        shape->setPosition(x, y);
+
+        figures.push_back(shape);
+    }
 
     sf::RenderWindow window(sf::VideoMode(400, 400), "Task 05-06");
 
